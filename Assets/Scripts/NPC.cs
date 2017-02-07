@@ -7,6 +7,8 @@ public class NPC : MonoBehaviour {
 	public bool goToDestination = false;
 	public GameObject target = null;
 
+	public bool busy = false;
+
 	// Use this for initialization
 	void Start () {
 		agent = GetComponent<NavMeshAgent>();
@@ -17,5 +19,17 @@ public class NPC : MonoBehaviour {
 		if (goToDestination && target != null) {
 			agent.SetDestination(target.transform.position);
 		}
+	}
+
+	public void StartWork(){
+		busy = true;
+		StartCoroutine (Work());
+	}
+
+	IEnumerator Work(){
+		Debug.Log ("Start work");
+		yield return new WaitForSeconds (15.0f);
+		Debug.Log ("Finished work");
+		busy = false;
 	}
 }
