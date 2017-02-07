@@ -8,6 +8,8 @@ public class Player : MonoBehaviour {
 	public float gravity = -3.0f;
 	public float speed = 0.2f;
 
+	public bool canPay = false;
+
 	private CharacterController controller;
 
 	private Vector3 direction = Vector3.zero;
