@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{217EEE39-1111-24BC-4B28-31020580F322}") = "Flat2dIsland", "Assembly-CSharp.csproj", "{5D922CBD-E4AA-4604-CBAA-ABC7CE6CFC39}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D922CBD-E4AA-4604-CBAA-ABC7CE6CFC39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D922CBD-E4AA-4604-CBAA-ABC7CE6CFC39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D922CBD-E4AA-4604-CBAA-ABC7CE6CFC39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D922CBD-E4AA-4604-CBAA-ABC7CE6CFC39}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
