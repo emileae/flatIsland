@@ -24,7 +24,7 @@ public class Blackboard : MonoBehaviour {
 	void Update () {
 		if (waitingNPCTargets.Count > 0 && !callingQueuedTargets) {
 			callingQueuedTargets = true;
-			Debug.Log("Call Queued targets.... start");
+//			Debug.Log("Call Queued targets.... start");
 			StartCoroutine (CallQueuedTargets());
 		}
 	}
@@ -56,7 +56,7 @@ public class Blackboard : MonoBehaviour {
 
 		// no NPCs found... place in queue
 		if (!gotInitialIndex) {
-			Debug.Log ("NO NPCSSSSSZZZZZ");
+//			Debug.Log ("NO NPCSSSSSZZZZZ");
 			if (!waitingNPCTargets.Contains (target)) {
 				waitingNPCTargets.Add (target);
 			}
@@ -75,9 +75,9 @@ public class Blackboard : MonoBehaviour {
 	}
 
 	IEnumerator CallQueuedTargets(){
-		Debug.Log("Call Queued targets.... wait");
+//		Debug.Log("Call Queued targets.... wait");
 		yield return new WaitForSeconds (5.0f);
-		Debug.Log ("Called a Queued target......" + waitingNPCTargets [0]);
+//		Debug.Log ("Called a Queued target......" + waitingNPCTargets [0]);
 		CallNearestNPC (waitingNPCTargets [0]);
 		callingQueuedTargets = false;
 	}

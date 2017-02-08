@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Runtime.Serialization;
 
 public class NPC : MonoBehaviour {
 
@@ -25,16 +26,28 @@ public class NPC : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		if (goToDestination && target != null) {
 			busy = true;
-			agent.SetDestination(target.transform.position);
+			agent.SetDestination (target.transform.position);
 		}
+
+		// this is one option to call StartWork.... but might not always be able to get that close to the exact target... a large building with target as center for example
+//		if (target != null) {
+//			float sqrDistanceFromTarget = (transform.position - target.transform.position).sqrMagnitude;
+//			if (sqrDistanceFromTarget < 0.2) {
+//				Debug.Log ("Start work.....!>!>!>!>!>!>!>!>!");
+//			}
+//		}
 	}
 
 	public void StartWork ()
 	{
+		Debug.Log("Should start work?");
 		if (buildingScript) {
+			Debug.Log("Should start work? --> Coroutine");
+			work = Work ();
 			StartCoroutine (work);
 		}
 	}
@@ -48,19 +61,25 @@ public class NPC : MonoBehaviour {
 
 	IEnumerator Work ()
 	{
+		float workTime = 0.0f;
 		Debug.Log ("Start work");
 		if (buildingScript.built) {
 			isMaking = true;
+			workTime = buildingScript.makeTime;
 			Debug.Log ("Show making animation");
 		} else {
 			isBuilding = true;
+			workTime = buildingScript.buildTime;
 			Debug.Log ("Show building animation");
 		}
-		yield return new WaitForSeconds (15.0f);
+		yield return new WaitForSeconds (workTime);
 		Debug.Log ("Finished work");
 
 		// telling the building we're finished the work
 		buildingScript.GetResult(gameObject.GetComponent<NPC>());
+		// no longer need building script
+		building = null;
+		buildingScript = null;
 
 		goToDestination = false;
 		target = null;

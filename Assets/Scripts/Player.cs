@@ -43,7 +43,7 @@ public class Player : MonoBehaviour {
 
 		if (inputV < 0 && canPay && totalCoins > 0) {
 			if (!isPaying) {
-				if (!buildingScript.purchased) {
+				if (!buildingScript.occupied) {
 //					Debug.Log ("call Pay()");
 					isPaying = true;
 					StartCoroutine (Pay ());

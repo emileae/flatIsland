@@ -9,6 +9,7 @@ public class Building : MonoBehaviour {
 	public int buildCost = 5;
 	public bool built = false;
 	public float buildTime = 15.0f;
+	public bool occupied = false;// used to prevent more than one NPC building the building / crafting an item
 
 	// item basics
 	public int cost = 3;
@@ -46,15 +47,17 @@ public class Building : MonoBehaviour {
 			if (coinsPaid >= buildCost) {
 				paymentCompleted = true;
 				coinsPaid = 0;
-				purchased = true;
+//				purchased = true;
 				blackboard.CallNearestNPC (gameObject);
+				occupied = true;
 			}
 		} else {
 			if (coinsPaid >= cost) {
 				paymentCompleted = true;
 				coinsPaid = 0;
-				purchased = true;
+//				purchased = true;
 				blackboard.CallNearestNPC (gameObject);
+				occupied = true;// the building becomes occupied as soon as NPC is called, not when NPC arrives... that opens up time for double payments of Player
 			}
 		}
 	}
@@ -72,6 +75,7 @@ public class Building : MonoBehaviour {
 		if (go.tag == "NPC") {
 			NPC npcScript = go.GetComponent<NPC>();
 			if (npcScript.target == gameObject) {
+				Debug.Log("Arrived at target destination ---- NPC");
 				npcScript.building = gameObject;
 				npcScript.buildingScript = gameObject.GetComponent<Building>();
 				npcScript.StartWork ();
@@ -104,6 +108,7 @@ public class Building : MonoBehaviour {
 		if (go.tag == "NPC") {
 			NPC npcScript = go.GetComponent<NPC> ();
 			if (npcScript.target == gameObject) {
+				occupied = false;// if NPC leaves building its then available for another NPC
 				// TODO
 				// potential bug here, where NPC may still be amrked as busy even though task isn't complete
 				// Coroutine may still be running even if NPX isn't at station...
@@ -114,6 +119,7 @@ public class Building : MonoBehaviour {
 					npcScript.building = null;
 					npcScript.buildingScript = null;
 				} else {
+					Debug.Log("StopWork Coroutine");
 					npcScript.StopWork();
 					// NPC no longer pursues the task if pushed out of work area...
 					npcScript.goToDestination = false;
@@ -140,12 +146,15 @@ public class Building : MonoBehaviour {
 				Debug.Log ("tell NPC to start fishing");
 			}
 		} else {
+			built = true;
 			if (rodShop) {
 				Debug.Log ("built rodShop");
 			} else if (fishingSpot) {
 				Debug.Log ("built fishingSpot");
 			}
 		}
+
+		occupied = false;
 
 	}
 
