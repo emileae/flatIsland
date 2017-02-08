@@ -12,8 +12,6 @@ public class FishingSpot : MonoBehaviour {
 	private int yields = 0;
 	private int hp = 0;
 
-	public Dictionary<string, int> badguys = new Dictionary<string, int>();
-
 
 	// Use this for initialization
 	void Start () {
