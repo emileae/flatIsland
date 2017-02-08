@@ -223,10 +223,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e705746995294f20a5390384ed58d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildCost: 5
+  built: 0
+  buildTime: 15
   cost: 3
+  makeTime: 5
   purchased: 0
   coinslot: {fileID: 0}
   coin: {fileID: 0}
+  fishingSpot: 0
+  rodShop: 0
 --- !u!54 &140786586
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -759,10 +765,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e705746995294f20a5390384ed58d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildCost: 5
+  built: 0
+  buildTime: 15
   cost: 3
+  makeTime: 5
   purchased: 0
   coinslot: {fileID: 0}
   coin: {fileID: 0}
+  fishingSpot: 0
+  rodShop: 0
 --- !u!54 &881836718
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -837,10 +849,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e705746995294f20a5390384ed58d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildCost: 5
+  built: 0
+  buildTime: 15
   cost: 3
+  makeTime: 5
   purchased: 0
   coinslot: {fileID: 0}
   coin: {fileID: 0}
+  fishingSpot: 0
+  rodShop: 0
 --- !u!23 &958641111
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -985,10 +1003,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e705746995294f20a5390384ed58d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildCost: 5
+  built: 0
+  buildTime: 15
   cost: 3
+  makeTime: 5
   purchased: 0
   coinslot: {fileID: 0}
   coin: {fileID: 0}
+  fishingSpot: 0
+  rodShop: 0
 --- !u!54 &1056736216
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1051,6 +1075,8 @@ MonoBehaviour:
   goToDestination: 0
   target: {fileID: 0}
   busy: 0
+  building: {fileID: 0}
+  buildingScript: {fileID: 0}
 --- !u!195 &1161879222
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1394,10 +1420,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e705746995294f20a5390384ed58d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildCost: 5
+  built: 0
+  buildTime: 15
   cost: 3
+  makeTime: 5
   purchased: 0
   coinslot: {fileID: 0}
   coin: {fileID: 0}
+  fishingSpot: 0
+  rodShop: 0
 --- !u!23 &1522793216
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1491,6 +1523,49 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 13077caf2b92a45329d811db2d1327d8, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &1590549598
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: c5d94a540e644447b9e7c34418f534c9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -30.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c5d94a540e644447b9e7c34418f534c9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c5d94a540e644447b9e7c34418f534c9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c5d94a540e644447b9e7c34418f534c9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c5d94a540e644447b9e7c34418f534c9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c5d94a540e644447b9e7c34418f534c9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c5d94a540e644447b9e7c34418f534c9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c5d94a540e644447b9e7c34418f534c9, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 9500000, guid: c5d94a540e644447b9e7c34418f534c9, type: 3}
+  m_ParentPrefab: {fileID: 100100000, guid: c5d94a540e644447b9e7c34418f534c9, type: 3}
   m_IsPrefabParent: 0
 --- !u!1 &1621792152
 GameObject:
@@ -1871,10 +1946,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e705746995294f20a5390384ed58d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildCost: 5
+  built: 0
+  buildTime: 15
   cost: 3
+  makeTime: 5
   purchased: 0
   coinslot: {fileID: 0}
   coin: {fileID: 0}
+  fishingSpot: 0
+  rodShop: 0
 --- !u!23 &1793447020
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2015,10 +2096,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e705746995294f20a5390384ed58d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildCost: 5
+  built: 0
+  buildTime: 15
   cost: 3
+  makeTime: 5
   purchased: 0
   coinslot: {fileID: 0}
   coin: {fileID: 0}
+  fishingSpot: 0
+  rodShop: 0
 --- !u!54 &1829058666
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2034,6 +2121,43 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1907537608 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: c5d94a540e644447b9e7c34418f534c9, type: 3}
+  m_PrefabInternal: {fileID: 1590549598}
+--- !u!114 &1907537609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1907537608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e705746995294f20a5390384ed58d2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildCost: 5
+  built: 0
+  buildTime: 15
+  cost: 5
+  makeTime: 5
+  purchased: 0
+  coinslot: {fileID: 0}
+  coin: {fileID: 0}
+  fishingSpot: 0
+  rodShop: 0
+--- !u!65 &1907537610
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1907537608}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.755148, y: 38.93247, z: 8.191929}
+  m_Center: {x: 0, y: 15.116583, z: 4.1854153}
 --- !u!1001 &2134066922
 Prefab:
   m_ObjectHideFlags: 0

@@ -24,11 +24,13 @@ public class Blackboard : MonoBehaviour {
 	void Update () {
 		if (waitingNPCTargets.Count > 0 && !callingQueuedTargets) {
 			callingQueuedTargets = true;
+			Debug.Log("Call Queued targets.... start");
 			StartCoroutine (CallQueuedTargets());
 		}
 	}
 
-	public void CallNearestNPC(GameObject target){
+	public void CallNearestNPC (GameObject target)
+	{
 
 		// TODO
 		// queue NPC calls when there are no available NPCs.....
@@ -37,7 +39,6 @@ public class Blackboard : MonoBehaviour {
 		float minDistance = 0;
 		int minIndex = 0;
 		for (int i = 0; i < npcScripts.Count; i++) {
-			Debug.Log ("NPC " + i + " busy: " + npcScripts [i].busy);
 			if (!npcScripts [i].busy) {
 				float distance = (npcs [i].position - target.transform.position).sqrMagnitude;
 				if (!gotInitialIndex) {
@@ -56,7 +57,9 @@ public class Blackboard : MonoBehaviour {
 		// no NPCs found... place in queue
 		if (!gotInitialIndex) {
 			Debug.Log ("NO NPCSSSSSZZZZZ");
-			waitingNPCTargets.Add (target);
+			if (!waitingNPCTargets.Contains (target)) {
+				waitingNPCTargets.Add (target);
+			}
 		} else {
 			// now send NPC to target
 			NPC closestNPC = npcScripts [minIndex];
@@ -64,14 +67,18 @@ public class Blackboard : MonoBehaviour {
 			closestNPC.goToDestination = true;
 
 			// remove from list of queued targets if its in the list
-			waitingNPCTargets.Remove (target);
+			if (waitingNPCTargets.Contains (target)) {
+				waitingNPCTargets.Remove (target);
+			}
 		}
 
 	}
 
 	IEnumerator CallQueuedTargets(){
+		Debug.Log("Call Queued targets.... wait");
 		yield return new WaitForSeconds (5.0f);
-		Debug.Log ("Called a Queued target......");
+		Debug.Log ("Called a Queued target......" + waitingNPCTargets [0]);
 		CallNearestNPC (waitingNPCTargets [0]);
+		callingQueuedTargets = false;
 	}
 }

@@ -43,7 +43,6 @@ public class Player : MonoBehaviour {
 
 		if (inputV < 0 && canPay && totalCoins > 0) {
 			if (!isPaying) {
-				Debug.Log ("purchased??: " + buildingScript.purchased);
 				if (!buildingScript.purchased) {
 //					Debug.Log ("call Pay()");
 					isPaying = true;
