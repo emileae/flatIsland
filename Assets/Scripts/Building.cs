@@ -10,6 +10,7 @@ public class Building : MonoBehaviour {
 	public bool built = false;
 	public float buildTime = 15.0f;
 	public bool occupied = false;// used to prevent more than one NPC building the building / crafting an item
+	private GameObject npcTarget = null;
 
 	// item basics
 	public int cost = 3;
@@ -22,16 +23,33 @@ public class Building : MonoBehaviour {
 	public GameObject coinslot;
 	public GameObject coin;
 
-	// Building types
+	// Building types & Levels
+	public int level = 0;
 	public bool fishingSpot;
 	public bool rodShop;
-//	public bool gunShop;
-//	public bool hammerShop;
+
+	// Specific scripts for each building type
+	public FishingSpot fishingSpotScript = null;
 
 	// Use this for initialization
 	void Start () {
 		if (!blackboard) {
 			blackboard = GameObject.Find ("Blackboard").GetComponent<Blackboard> ();
+		}
+		if (!npcTarget) {
+			foreach (Transform child in transform) {
+				if (child.CompareTag ("NPCTarget")) {
+					npcTarget = child.gameObject;
+				}
+			}
+
+			// if no match was found
+			if (npcTarget == null){
+				npcTarget = gameObject;
+			}
+		}
+		if (fishingSpotScript == null) {
+			fishingSpotScript = GetComponent<FishingSpot> ();
 		}
 	}
 	
@@ -48,7 +66,7 @@ public class Building : MonoBehaviour {
 				paymentCompleted = true;
 				coinsPaid = 0;
 //				purchased = true;
-				blackboard.CallNearestNPC (gameObject);
+				blackboard.CallNearestNPC (npcTarget);
 				occupied = true;
 			}
 		} else {
@@ -56,7 +74,7 @@ public class Building : MonoBehaviour {
 				paymentCompleted = true;
 				coinsPaid = 0;
 //				purchased = true;
-				blackboard.CallNearestNPC (gameObject);
+				blackboard.CallNearestNPC (npcTarget);
 				occupied = true;// the building becomes occupied as soon as NPC is called, not when NPC arrives... that opens up time for double payments of Player
 			}
 		}
@@ -74,7 +92,7 @@ public class Building : MonoBehaviour {
 		}
 		if (go.tag == "NPC") {
 			NPC npcScript = go.GetComponent<NPC>();
-			if (npcScript.target == gameObject) {
+			if (npcScript.target == npcTarget) {
 				Debug.Log("Arrived at target destination ---- NPC");
 				npcScript.building = gameObject;
 				npcScript.buildingScript = gameObject.GetComponent<Building>();
@@ -107,7 +125,7 @@ public class Building : MonoBehaviour {
 
 		if (go.tag == "NPC") {
 			NPC npcScript = go.GetComponent<NPC> ();
-			if (npcScript.target == gameObject) {
+			if (npcScript.target == npcTarget) {
 				occupied = false;// if NPC leaves building its then available for another NPC
 				// TODO
 				// potential bug here, where NPC may still be amrked as busy even though task isn't complete

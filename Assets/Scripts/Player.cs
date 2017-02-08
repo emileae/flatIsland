@@ -53,7 +53,7 @@ public class Player : MonoBehaviour {
 	}
 
 	IEnumerator Pay(){
-		yield return new WaitForSeconds (0.5f);
+		yield return new WaitForSeconds (0.1f);
 		Debug.Log ("Pay");
 		totalCoins -= 1;
 		isPaying = false;

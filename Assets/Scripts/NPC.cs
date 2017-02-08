@@ -42,6 +42,18 @@ public class NPC : MonoBehaviour {
 //		}
 	}
 
+	public void GoToTarget(GameObject destination){
+		if (target == destination) {
+			Debug.Log ("Already there....");
+			goToDestination = true;
+			StartWork ();
+		}else{
+			target = destination;
+			goToDestination = true;
+		}
+
+	}
+
 	public void StartWork ()
 	{
 		Debug.Log("Should start work?");
@@ -72,17 +84,21 @@ public class NPC : MonoBehaviour {
 			workTime = buildingScript.buildTime;
 			Debug.Log ("Show building animation");
 		}
+
 		yield return new WaitForSeconds (workTime);
 		Debug.Log ("Finished work");
 
 		// telling the building we're finished the work
 		buildingScript.GetResult(gameObject.GetComponent<NPC>());
 		// no longer need building script
-		building = null;
-		buildingScript = null;
+//		building = null;
+//		buildingScript = null;
 
 		goToDestination = false;
-		target = null;
+
+		// only reset target once NPC has exited the building... trying to ensure that NPC still works even if trigger enter isn't called 
+		// in the case of overlapping NPCs
+//		target = null;
 		busy = false;
 	}
 }

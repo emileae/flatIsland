@@ -50,7 +50,7 @@ public class CameraControl : MonoBehaviour {
 		// Smoothly transition to that position.
 		transform.position = Vector3.SmoothDamp (transform.position, m_DesiredPosition, ref m_MoveVelocity, m_DampTime);
 		if (transform.position == m_DesiredPosition) {
-			Debug.Log ("Camera stopped...");
+//			Debug.Log ("Camera stopped...");
 			isMoving = false;
 		} else {
 			isMoving = true;

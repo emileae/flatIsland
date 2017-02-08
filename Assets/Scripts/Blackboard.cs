@@ -63,8 +63,9 @@ public class Blackboard : MonoBehaviour {
 		} else {
 			// now send NPC to target
 			NPC closestNPC = npcScripts [minIndex];
-			closestNPC.target = target;
-			closestNPC.goToDestination = true;
+			closestNPC.GoToTarget (target);
+//			closestNPC.target = target;
+//			closestNPC.goToDestination = true;
 
 			// remove from list of queued targets if its in the list
 			if (waitingNPCTargets.Contains (target)) {
