@@ -19,6 +19,7 @@ public class NPC : MonoBehaviour {
 	private IEnumerator work;
 
 	// money earning
+	private bool depositingCoins = false;
 	public int coinsHeld = 0;
 
 	// Use this for initialization
@@ -50,7 +51,7 @@ public class NPC : MonoBehaviour {
 
 	public void GoToTarget(GameObject destination){
 		if (target == destination) {
-			Debug.Log ("Already there....");
+//			Debug.Log ("Already there....");
 			goToDestination = true;
 			StartWork ();
 		}else{
@@ -62,11 +63,15 @@ public class NPC : MonoBehaviour {
 
 	public void StartWork ()
 	{
-		Debug.Log("Should start work?");
+		Debug.Log ("Should start work?");
 		if (buildingScript) {
-			Debug.Log("Should start work? --> Coroutine");
+//			Debug.Log ("Should start work? --> Coroutine");
 			work = Work ();
-			StartCoroutine (work);
+			if (buildingScript.isBase && depositingCoins) {
+				DepositCoins();
+			} else {
+				StartCoroutine (work);
+			}
 		}
 	}
 
@@ -80,13 +85,13 @@ public class NPC : MonoBehaviour {
 	IEnumerator Work ()
 	{
 		float workTime = 0.0f;
-		Debug.Log ("Start work");
+//		Debug.Log ("Start work");
 
 		BuildingParameters parameters = new BuildingParameters (buildingScript.level, buildingScript);
 
 
-		Debug.Log ("workTime " + parameters.workTime);
-		Debug.Log ("animation state " + parameters.animationState);
+//		Debug.Log ("workTime " + parameters.workTime);
+//		Debug.Log ("animation state " + parameters.animationState);
 
 		workTime = parameters.workTime;
 
@@ -108,11 +113,11 @@ public class NPC : MonoBehaviour {
 //		}
 
 		yield return new WaitForSeconds (workTime);
-		Debug.Log ("Finished work");
 
 		// set building's built status to 'built'
 		if (!buildingScript.built) {
 			buildingScript.built = true;
+			buildingScript.hp = parameters.hp;
 		}
 
 		// telling the building we're finished the work
@@ -126,10 +131,36 @@ public class NPC : MonoBehaviour {
 		coinsHeld += parameters.coinsEarned;
 
 		if (parameters.coinsEarned > 0) {
-			Debug.Log ("Drop off coins at base.....");
+//			Debug.Log ("Drop off coins at base.....");
 			target = blackboard.baseScript.npcTarget;
+			depositingCoins = true;
 			busy = true;
 			goToDestination = true;
+		}
+
+	}
+
+	public void DepositCoins ()
+	{
+		if (coinsHeld > 0) {
+			StartCoroutine (DropOffCoins ());
+		}
+	}
+
+	IEnumerator DropOffCoins ()
+	{
+		// multiply coinsHeld by the deposit time per coin....
+		float coinDropoffTime = 2.0f;
+		yield return new WaitForSeconds (coinDropoffTime);
+//		Debug.Log("dropped off a coin... coins left: " + coinsHeld);
+		coinsHeld -= 1;
+		buildingScript.storedCoins += 1;
+		if (coinsHeld > 0) {
+			DepositCoins ();
+		} else {
+			depositingCoins = false;
+			busy = false;
+			goToDestination = false;
 		}
 
 	}

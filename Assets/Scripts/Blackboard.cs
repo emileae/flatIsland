@@ -6,7 +6,7 @@ public class Blackboard : MonoBehaviour {
 
 	public List<Transform> buildings = new List<Transform> ();
 	public List<Building> buildingScripts = new List<Building> ();
-	public Building baseScript;
+	public Building baseScript = null;
 
 	public List<Transform> npcs = new List<Transform> ();
 	public List<NPC> npcScripts = new List<NPC> ();
@@ -15,7 +15,7 @@ public class Blackboard : MonoBehaviour {
 	public List<GameObject> waitingNPCTargets = new List<GameObject> ();
 
 	// Use this for initialization
-	void Start ()
+	void Awake ()
 	{
 
 		// populate all NPCs
@@ -32,7 +32,7 @@ public class Blackboard : MonoBehaviour {
 			Building currentBuildingScript = child.GetComponent<Building> ();
 			buildingScripts.Add (currentBuildingScript);
 			if (currentBuildingScript.isBase) {
-				baseScript = currentBuildingScript;
+				baseScript = child.gameObject.GetComponent<Building>();
 			}
 		}
 
@@ -101,16 +101,6 @@ public class Blackboard : MonoBehaviour {
 		callingQueuedTargets = false;
 	}
 
-	public Dictionary<string, object> GetWorkDetails(Building buildingScript){
-		Debug.Log("Need to return details about a building");
-
-		Dictionary<string, object> Parameters = new Dictionary<string, object>();
-		Parameters.Add("Key1", "A string");
-		Parameters.Add("Key2", true);
-		Parameters.Add("workTime", 5.0f);
-
-		return Parameters;
-	}
 }
 
 
@@ -118,11 +108,14 @@ public class Blackboard : MonoBehaviour {
 // 1 = building
 // 2 = fishing
 // 3 = gardening
+// 4 = payingcoins
+// 5 = workshop work
 
 public class BuildingParameters {
 	public float workTime = 0.0f;
 	public int coinsEarned = 0;
 	public int animationState = 0;
+	public int hp = 1;
 
 	public BuildingParameters (int level, Building script)
 	{
@@ -133,10 +126,12 @@ public class BuildingParameters {
 				case 0:
 					workTime = 5.0f;
 					coinsEarned = 2;
+					hp = 2;
 					break;
 				case 1:
 					workTime = 8.0f;
 					coinsEarned = 4;
+					hp = 3;
 					break;
 				default:
 					break;
@@ -147,10 +142,24 @@ public class BuildingParameters {
 				case 0:
 					workTime = 5.0f;
 					coinsEarned = 3;
+					hp = 3;
 					break;
 				case 1:
 					workTime = 8.0f;
 					coinsEarned = 5;
+					hp = 6;
+					break;
+				default:
+					break;
+				}
+			} else if (script.isBase) {
+				animationState = 5;
+				switch (level) {
+				case 0:
+					workTime = 5.0f;
+					break;
+				case 1:
+					workTime = 8.0f;
 					break;
 				default:
 					break;
@@ -161,6 +170,8 @@ public class BuildingParameters {
 			if (script.fishingSpot) {
 				workTime = 5.0f;
 			} else if (script.garden) {
+				workTime = 10.0f;
+			} else if (script.isBase) {
 				workTime = 10.0f;
 			}
 		}

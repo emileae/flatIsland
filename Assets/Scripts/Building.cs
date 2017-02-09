@@ -11,6 +11,7 @@ public class Building : MonoBehaviour {
 //	public float buildTime = 15.0f;
 	public bool occupied = false;// used to prevent more than one NPC building the building / crafting an item
 	public GameObject npcTarget = null;
+	public int hp = 0;
 
 	// Base
 	public int storedCoins = 0;
@@ -91,18 +92,30 @@ public class Building : MonoBehaviour {
 		GameObject go = col.gameObject;
 
 		if (go.tag == "Player") {
-			Player playerScript = go.GetComponent<Player>(); 
+			Player playerScript = go.GetComponent<Player> (); 
 			playerScript.canPay = true;
+			if (isBase) {
+				playerScript.canCollect = true;
+			}
 			playerScript.activeBuilding = gameObject;
-			playerScript.buildingScript = gameObject.GetComponent<Building>();
+			playerScript.buildingScript = gameObject.GetComponent<Building> ();
 		}
 		if (go.tag == "NPC") {
-			NPC npcScript = go.GetComponent<NPC>();
+			NPC npcScript = go.GetComponent<NPC> ();
 			if (npcScript.target == npcTarget) {
-				Debug.Log("Arrived at target destination ---- NPC");
+				Debug.Log ("Arrived at target destination ---- NPC");
 				npcScript.building = gameObject;
-				npcScript.buildingScript = gameObject.GetComponent<Building>();
+				npcScript.buildingScript = gameObject.GetComponent<Building> ();
 				npcScript.StartWork ();
+			}
+		}
+		if (go.tag == "Enemy") {
+			Enemy enemyScript = go.GetComponent<Enemy> ();
+			if (enemyScript.target == npcTarget) {
+				Debug.Log ("Arrived at target destination ---- Enemy");
+				enemyScript.building = gameObject;
+				enemyScript.buildingScript = gameObject.GetComponent<Building> ();
+				enemyScript.Attack();
 			}
 		}
 	}
@@ -114,6 +127,9 @@ public class Building : MonoBehaviour {
 		if (go.tag == "Player") {
 			Player playerScript = go.GetComponent<Player> (); 
 			playerScript.canPay = false;
+			if (isBase) {
+				playerScript.canCollect = false;
+			}
 			playerScript.activeBuilding = null;
 			playerScript.buildingScript = null;
 
@@ -143,8 +159,8 @@ public class Building : MonoBehaviour {
 					npcScript.building = null;
 					npcScript.buildingScript = null;
 				} else {
-					Debug.Log("StopWork Coroutine");
-					npcScript.StopWork();
+					Debug.Log ("StopWork Coroutine");
+					npcScript.StopWork ();
 					// NPC no longer pursues the task if pushed out of work area...
 					npcScript.goToDestination = false;
 					npcScript.target = null;

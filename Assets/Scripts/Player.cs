@@ -10,10 +10,12 @@ public class Player : MonoBehaviour {
 
 	private Blackboard blackboard = null;
 
-	public int totalCoins = 100;
+	public int carryingCoins = 100;
 
 	public bool canPay = false;
+	public bool canCollect = false;
 	private bool isPaying = false;
+	private bool isCollecting = false;
 	public GameObject activeBuilding;
 	public Building buildingScript;
 
@@ -32,21 +34,31 @@ public class Player : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		// moving
-		float inputH = Input.GetAxisRaw("Horizontal");
+		float inputH = Input.GetAxisRaw ("Horizontal");
 		direction = Vector3.right * inputH;
-		controller.Move(direction * speed + Vector3.up * gravity);
+		controller.Move (direction * speed + Vector3.up * gravity);
 
 		// action
-		float inputV = Input.GetAxisRaw("Vertical");
+		float inputV = Input.GetAxisRaw ("Vertical");
 
-		if (inputV < 0 && canPay && totalCoins > 0) {
+		if (inputV < 0 && canPay && carryingCoins > 0) {
 			if (!isPaying) {
 				if (!buildingScript.occupied) {
-//					Debug.Log ("call Pay()");
 					isPaying = true;
 					StartCoroutine (Pay ());
+				}
+			}
+		}
+		if (inputV > 0 && canCollect) {
+			if (!isCollecting) {
+				isCollecting = true;
+				if (buildingScript.storedCoins > 0) {
+					StartCoroutine (Collect ());
+				} else {
+					isCollecting = false;
 				}
 			}
 		}
@@ -55,7 +67,7 @@ public class Player : MonoBehaviour {
 	IEnumerator Pay(){
 		yield return new WaitForSeconds (0.1f);
 		Debug.Log ("Pay");
-		totalCoins -= 1;
+		carryingCoins -= 1;
 		isPaying = false;
 		if (activeBuilding) {
 			buildingScript.GetPaid ();
@@ -63,7 +75,15 @@ public class Player : MonoBehaviour {
 	}
 
 	public void ReturnCoins(int returnedCoins){
-		totalCoins += returnedCoins;
+		carryingCoins += returnedCoins;
+	}
+
+	IEnumerator Collect(){
+		yield return new WaitForSeconds (0.1f);
+		Debug.Log ("Collect");
+		carryingCoins += 1;
+		buildingScript.storedCoins -= 1;
+		isCollecting = false;
 	}
 
 }
