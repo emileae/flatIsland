@@ -22,6 +22,12 @@ public class NPC : MonoBehaviour {
 	private bool depositingCoins = false;
 	public int coinsHeld = 0;
 
+	// Enemies
+	public bool alert = false;
+	private bool attacking = false;
+	public GameObject enemy = null;
+	public Enemy enemyScript = null;
+
 	// Use this for initialization
 	void Start () {
 		agent = GetComponent<NavMeshAgent>();
@@ -38,6 +44,13 @@ public class NPC : MonoBehaviour {
 		if (goToDestination && target != null) {
 			busy = true;
 			agent.SetDestination (target.transform.position);
+		}
+
+		if (alert) {
+			if (!attacking) {
+				attacking = true;
+				StartCoroutine (Attack ());
+			}
 		}
 
 		// this is one option to call StartWork.... but might not always be able to get that close to the exact target... a large building with target as center for example
@@ -163,5 +176,14 @@ public class NPC : MonoBehaviour {
 			goToDestination = false;
 		}
 
+	}
+
+	IEnumerator Attack(){
+		yield return new WaitForSeconds (2.0f);
+		Debug.Log ("Attack the enemy !!!!!!!!!");
+		if (enemy != null && enemyScript != null) {
+			enemyScript.hp -= 1;
+			attacking = false;
+		}
 	}
 }

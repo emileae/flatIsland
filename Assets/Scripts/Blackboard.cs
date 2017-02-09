@@ -4,15 +4,21 @@ using System.Collections.Generic;
 
 public class Blackboard : MonoBehaviour {
 
+	// buildings
 	public List<Transform> buildings = new List<Transform> ();
 	public List<Building> buildingScripts = new List<Building> ();
 	public Building baseScript = null;
 
+	// NPCs
 	public List<Transform> npcs = new List<Transform> ();
 	public List<NPC> npcScripts = new List<NPC> ();
 
-	private bool callingQueuedTargets = false;
+	public bool callingQueuedTargets = false;
 	public List<GameObject> waitingNPCTargets = new List<GameObject> ();
+
+	// Enemies
+	public List<Transform> enemies = new List<Transform> ();
+	public List<Enemy> enemyScripts = new List<Enemy> ();
 
 	// Use this for initialization
 	void Awake ()
@@ -34,6 +40,14 @@ public class Blackboard : MonoBehaviour {
 			if (currentBuildingScript.isBase) {
 				baseScript = child.gameObject.GetComponent<Building>();
 			}
+		}
+
+		// populate all initial enemies
+		GameObject enemyContainer = GameObject.Find ("Enemies");
+		foreach (Transform child in enemyContainer.transform) {
+			enemies.Add (child);
+			Enemy currentEnemyScript = child.GetComponent<Enemy> ();
+			enemyScripts.Add (currentEnemyScript);
 		}
 
 	}
@@ -99,6 +113,13 @@ public class Blackboard : MonoBehaviour {
 //		Debug.Log ("Called a Queued target......" + waitingNPCTargets [0]);
 		CallNearestNPC (waitingNPCTargets [0]);
 		callingQueuedTargets = false;
+	}
+
+	public void CallNPCsToPlayer(GameObject player){
+		for (int i = 0; i < npcScripts.Count; i++) {
+			npcScripts[i].target = player;
+			npcScripts [i].goToDestination = true;
+		}
 	}
 
 }

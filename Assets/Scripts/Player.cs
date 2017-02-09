@@ -21,12 +21,17 @@ public class Player : MonoBehaviour {
 
 
 	private CharacterController controller;
+	private NavMeshAgent agent;
 
 	private Vector3 direction = Vector3.zero;
 
+	// calling men
+	private bool whistling = false;
+
 	// Use this for initialization
 	void Start () {
-		controller = GetComponent<CharacterController>();
+//		controller = GetComponent<CharacterController>();
+		agent = GetComponent<NavMeshAgent>();
 
 		if (!blackboard) {
 			blackboard = GameObject.Find ("Blackboard").GetComponent<Blackboard> ();
@@ -39,10 +44,14 @@ public class Player : MonoBehaviour {
 		// moving
 		float inputH = Input.GetAxisRaw ("Horizontal");
 		direction = Vector3.right * inputH;
-		controller.Move (direction * speed + Vector3.up * gravity);
+//		controller.Move (direction * speed + Vector3.up * gravity);
+		agent.Move(direction);
 
 		// action
 		float inputV = Input.GetAxisRaw ("Vertical");
+
+		// call men
+		bool whistle = Input.GetButton("Fire3");
 
 		if (inputV < 0 && canPay && carryingCoins > 0) {
 			if (!isPaying) {
@@ -61,6 +70,11 @@ public class Player : MonoBehaviour {
 					isCollecting = false;
 				}
 			}
+		}
+
+		if (whistle && !whistling) {
+			whistling = true;
+			StartCoroutine (Whistle());
 		}
 	}
 
@@ -84,6 +98,20 @@ public class Player : MonoBehaviour {
 		carryingCoins += 1;
 		buildingScript.storedCoins -= 1;
 		isCollecting = false;
+	}
+
+	IEnumerator Whistle(){
+		Debug.Log ("Play dramatic whistle / bugle animation.....");
+		blackboard.CallNPCsToPlayer (gameObject);
+		yield return new WaitForSeconds (1.0f);
+		whistling = false;
+	}
+
+	void OnControllerColliderHit(ControllerColliderHit hit) {
+		if (hit.gameObject.tag == "NPC") {
+			NavMeshAgent npcAgent = hit.gameObject.GetComponent<NavMeshAgent> ();
+			npcAgent.Move (Vector3.forward);
+		}
 	}
 
 }

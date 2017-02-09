@@ -110,8 +110,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.29751, y: 36.74315, z: 11.002278}
-  m_Center: {x: 0.16274261, y: 0.5010638, z: 5.503086}
+  m_Size: {x: 5.29751, y: 78.04584, z: 11.002278}
+  m_Center: {x: 0.16274261, y: 21.152515, z: 5.5031147}
 --- !u!54 &25259808
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -140,6 +140,7 @@ GameObject:
   - 23: {fileID: 33354421}
   - 195: {fileID: 33354420}
   - 114: {fileID: 33354419}
+  - 54: {fileID: 33354424}
   m_Layer: 0
   m_Name: Capsule (1)
   m_TagString: NPC
@@ -177,6 +178,9 @@ MonoBehaviour:
   building: {fileID: 0}
   buildingScript: {fileID: 0}
   coinsHeld: 0
+  alert: 0
+  enemy: {fileID: 0}
+  enemyScript: {fileID: 0}
 --- !u!195 &33354420
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -189,7 +193,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -246,6 +250,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 33354417}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &33354424
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 33354417}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &79507304 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 51e488b2444ec466781fa89a9ce0b36c, type: 3}
@@ -322,8 +341,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 28.219664}
-  m_Center: {x: 0, y: 0, z: -10.827727}
+  m_Size: {x: 1, y: 1, z: 80.69397}
+  m_Center: {x: 0, y: 0, z: -37.06488}
 --- !u!33 &140786584
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -898,8 +917,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 21.780397}
-  m_Center: {x: 0, y: 0, z: -7.8429785}
+  m_Size: {x: 1, y: 1, z: 80.3488}
+  m_Center: {x: 0, y: 0, z: -37.127182}
 --- !u!33 &881836716
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1061,8 +1080,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 28.219664}
-  m_Center: {x: 0, y: 0, z: -10.827727}
+  m_Size: {x: 1, y: 1, z: 80.35542}
+  m_Center: {x: 0, y: 0, z: -36.895607}
 --- !u!33 &958641113
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1146,8 +1165,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 13.103365}
-  m_Center: {x: 0, y: 0, z: -3.4015417}
+  m_Size: {x: 1, y: 1, z: 80.474304}
+  m_Center: {x: 0, y: 0, z: -37.087013}
 --- !u!33 &1056736214
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1209,6 +1228,7 @@ GameObject:
   - 23: {fileID: 1161879223}
   - 195: {fileID: 1161879222}
   - 114: {fileID: 1161879221}
+  - 54: {fileID: 1161879226}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: NPC
@@ -1246,6 +1266,9 @@ MonoBehaviour:
   building: {fileID: 0}
   buildingScript: {fileID: 0}
   coinsHeld: 0
+  alert: 0
+  enemy: {fileID: 0}
+  enemyScript: {fileID: 0}
 --- !u!195 &1161879222
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1258,7 +1281,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1315,10 +1338,53 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1161879219}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &1161879226
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1161879219}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &1217197697 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 51e488b2444ec466781fa89a9ce0b36c, type: 3}
   m_PrefabInternal: {fileID: 696419884}
+--- !u!1 &1240188012
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1240188013}
+  m_Layer: 0
+  m_Name: NPCTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1240188013
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1240188012}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1621792158}
+  m_RootOrder: 0
 --- !u!1001 &1306535937
 Prefab:
   m_ObjectHideFlags: 0
@@ -1643,8 +1709,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 28.219664}
-  m_Center: {x: 0, y: 0, z: -10.827727}
+  m_Size: {x: 1, y: 1, z: 80.35542}
+  m_Center: {x: 0, y: 0, z: -36.895607}
 --- !u!33 &1522793218
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1762,6 +1828,8 @@ GameObject:
   - 23: {fileID: 1621792155}
   - 143: {fileID: 1621792154}
   - 114: {fileID: 1621792153}
+  - 195: {fileID: 1621792159}
+  - 54: {fileID: 1621792160}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1841,7 +1909,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1621792152}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
@@ -1860,12 +1928,48 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1621792152}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.5, y: 14.8, z: 8}
+  m_LocalPosition: {x: 13.5, y: 14.8, z: 6.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
+  m_Children:
+  - {fileID: 1240188013}
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!195 &1621792159
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1621792152}
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!54 &1621792160
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1621792152}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 8
+  m_CollisionDetection: 0
 --- !u!4 &1625218591 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: a5d3836a6929740649120608e37f539f, type: 3}
@@ -2030,7 +2134,10 @@ MonoBehaviour:
   baseScript: {fileID: 0}
   npcs: []
   npcScripts: []
+  callingQueuedTargets: 0
   waitingNPCTargets: []
+  enemies: []
+  enemyScripts: []
 --- !u!4 &1712182510
 Transform:
   m_ObjectHideFlags: 0
@@ -2188,8 +2295,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 28.219664}
-  m_Center: {x: 0, y: 0, z: -10.827727}
+  m_Size: {x: 1, y: 1, z: 80.01689}
+  m_Center: {x: 0, y: 0, z: -36.72634}
 --- !u!33 &1793447022
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2269,8 +2376,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 13.284382}
-  m_Center: {x: 0, y: 0, z: -3.742157}
+  m_Size: {x: 1, y: 1, z: 80.31572}
+  m_Center: {x: 0, y: 0, z: -37.257828}
 --- !u!33 &1829058664
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2332,6 +2439,8 @@ GameObject:
   - 23: {fileID: 1830252301}
   - 195: {fileID: 1830252300}
   - 114: {fileID: 1830252299}
+  - 135: {fileID: 1830252304}
+  - 54: {fileID: 1830252305}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Enemy
@@ -2443,6 +2552,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1830252297}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!135 &1830252304
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1830252297}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.350143
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1830252305
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1830252297}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1898804077
 GameObject:
   m_ObjectHideFlags: 0
@@ -2456,6 +2592,7 @@ GameObject:
   - 23: {fileID: 1898804081}
   - 195: {fileID: 1898804080}
   - 114: {fileID: 1898804079}
+  - 54: {fileID: 1898804084}
   m_Layer: 0
   m_Name: Capsule (2)
   m_TagString: NPC
@@ -2493,6 +2630,9 @@ MonoBehaviour:
   building: {fileID: 0}
   buildingScript: {fileID: 0}
   coinsHeld: 0
+  alert: 0
+  enemy: {fileID: 0}
+  enemyScript: {fileID: 0}
 --- !u!195 &1898804080
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2505,7 +2645,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -2562,6 +2702,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1898804077}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &1898804084
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1898804077}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1907537608 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: c5d94a540e644447b9e7c34418f534c9, type: 3}
@@ -2602,8 +2757,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.755148, y: 38.93247, z: 8.191929}
-  m_Center: {x: 0, y: 15.116583, z: 4.1854153}
+  m_Size: {x: 4.755148, y: 80.421684, z: 8.191929}
+  m_Center: {x: 0, y: 35.861706, z: 4.185421}
 --- !u!4 &1907537613 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: c5d94a540e644447b9e7c34418f534c9, type: 3}

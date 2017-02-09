@@ -43,6 +43,10 @@ public class Enemy : MonoBehaviour {
 		if (goToDestination && target != null) {
 			agent.SetDestination (target.transform.position);
 		}
+
+		if (hp <= 0) {
+			Destroy (gameObject);
+		}
 	}
 
 	IEnumerator WatchForNewTargets(){
@@ -110,8 +114,40 @@ public class Enemy : MonoBehaviour {
 		} else {
 			Debug.Log("DESTROYED BUILDING.... MOVE TO NEXT TARGET");
 			buildingScript.built = false;
+			if (blackboard.waitingNPCTargets.Count > 0) {
+				if (blackboard.waitingNPCTargets.Contains (building)) {
+					blackboard.waitingNPCTargets.Remove (building);
+					if (blackboard.waitingNPCTargets.Count <= 0) {
+						blackboard.callingQueuedTargets = false;
+					}
+				}
+			}
 //			buildings.Remove(building.transform);
 			GoToNearestBuilding();
+		}
+	}
+
+	void OnTriggerEnter(Collider col){
+		GameObject go = col.gameObject;
+		if (go.tag == "NPC") {
+			NPC npcScript = go.GetComponent<NPC> ();
+			npcScript.alert = true;
+			if (npcScript.enemy == null) {
+				npcScript.enemy = gameObject;
+				npcScript.enemyScript = gameObject.GetComponent<Enemy>();
+			}
+		}
+	}
+
+	void OnTriggerExit(Collider col){
+		GameObject go = col.gameObject;
+		if (go.tag == "NPC") {
+			NPC npcScript = go.GetComponent<NPC> ();
+			npcScript.alert = false;
+			if (npcScript.enemy == gameObject) {
+				npcScript.enemy = null;
+				npcScript.enemyScript = null;
+			}
 		}
 	}
 
