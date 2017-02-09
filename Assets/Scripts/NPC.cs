@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Runtime.Serialization;
+using System.Collections.Generic;
 
 public class NPC : MonoBehaviour {
+
+	private Blackboard blackboard;
 
 	private NavMeshAgent agent;
 	public bool goToDestination = false;
@@ -12,17 +15,20 @@ public class NPC : MonoBehaviour {
 	public GameObject building;
 	public Building buildingScript;
 
-	// different types of work state for each NPC
-	private bool isBuilding = false;
-	private bool isMaking = false;
-
 	// working functions
 	private IEnumerator work;
+
+	// money earning
+	public int coinsHeld = 0;
 
 	// Use this for initialization
 	void Start () {
 		agent = GetComponent<NavMeshAgent>();
 		work = Work ();
+
+		if (!blackboard) {
+			blackboard = GameObject.Find ("Blackboard").GetComponent<Blackboard> ();
+		}
 	}
 	
 	// Update is called once per frame
@@ -75,30 +81,56 @@ public class NPC : MonoBehaviour {
 	{
 		float workTime = 0.0f;
 		Debug.Log ("Start work");
-		if (buildingScript.built) {
-			isMaking = true;
-			workTime = buildingScript.makeTime;
-			Debug.Log ("Show making animation");
-		} else {
-			isBuilding = true;
-			workTime = buildingScript.buildTime;
-			Debug.Log ("Show building animation");
-		}
+
+		BuildingParameters parameters = new BuildingParameters (buildingScript.level, buildingScript);
+
+
+		Debug.Log ("workTime " + parameters.workTime);
+		Debug.Log ("animation state " + parameters.animationState);
+
+		workTime = parameters.workTime;
+
+//		if (buildingScript.built) {
+//
+//			if (buildingScript.fishingSpot) {
+//				
+//			}else if (buildingScript.garden){
+//				
+//			}
+//
+//			isMaking = true;
+//			workTime = buildingScript.makeTime;
+//			Debug.Log ("Show making animation");
+//		} else {
+//			isBuilding = true;
+//			workTime = buildingScript.buildTime;
+//			Debug.Log ("Show building animation");
+//		}
 
 		yield return new WaitForSeconds (workTime);
 		Debug.Log ("Finished work");
 
+		// set building's built status to 'built'
+		if (!buildingScript.built) {
+			buildingScript.built = true;
+		}
+
 		// telling the building we're finished the work
-		buildingScript.GetResult(gameObject.GetComponent<NPC>());
-		// no longer need building script
-//		building = null;
-//		buildingScript = null;
+		buildingScript.occupied = false;
 
 		goToDestination = false;
 
-		// only reset target once NPC has exited the building... trying to ensure that NPC still works even if trigger enter isn't called 
-		// in the case of overlapping NPCs
-//		target = null;
 		busy = false;
+
+		// collect earnings
+		coinsHeld += parameters.coinsEarned;
+
+		if (parameters.coinsEarned > 0) {
+			Debug.Log ("Drop off coins at base.....");
+			target = blackboard.baseScript.npcTarget;
+			busy = true;
+			goToDestination = true;
+		}
+
 	}
 }

@@ -176,6 +176,7 @@ MonoBehaviour:
   busy: 0
   building: {fileID: 0}
   buildingScript: {fileID: 0}
+  coinsHeld: 0
 --- !u!195 &33354420
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -281,7 +282,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 567172251}
-  m_RootOrder: 3
+  m_RootOrder: 8
 --- !u!23 &140786582
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -343,16 +344,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildCost: 5
   built: 0
-  buildTime: 15
   occupied: 0
+  npcTarget: {fileID: 0}
+  storedCoins: 0
   cost: 3
   makeTime: 5
   purchased: 0
   coinslot: {fileID: 0}
   coin: {fileID: 0}
   level: 0
+  isBase: 0
   fishingSpot: 1
-  rodShop: 0
+  garden: 0
 --- !u!54 &140786586
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -600,14 +603,15 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 1907537613}
+  - {fileID: 25259803}
+  - {fileID: 1522793213}
   - {fileID: 881836713}
   - {fileID: 1056736211}
-  - {fileID: 1829058661}
-  - {fileID: 140786581}
-  - {fileID: 25259803}
-  - {fileID: 1793447017}
-  - {fileID: 1522793213}
   - {fileID: 958641108}
+  - {fileID: 1829058661}
+  - {fileID: 1793447017}
+  - {fileID: 140786581}
   m_Father: {fileID: 0}
   m_RootOrder: 7
 --- !u!4 &576902379 stripped
@@ -853,7 +857,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 567172251}
-  m_RootOrder: 0
+  m_RootOrder: 3
 --- !u!23 &881836714
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -915,16 +919,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildCost: 5
   built: 0
-  buildTime: 15
   occupied: 0
+  npcTarget: {fileID: 0}
+  storedCoins: 0
   cost: 3
   makeTime: 5
   purchased: 0
   coinslot: {fileID: 0}
   coin: {fileID: 0}
   level: 0
+  isBase: 0
   fishingSpot: 1
-  rodShop: 0
+  garden: 0
 --- !u!54 &881836718
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -972,7 +978,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 567172251}
-  m_RootOrder: 7
+  m_RootOrder: 5
 --- !u!54 &958641109
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1001,16 +1007,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildCost: 5
   built: 0
-  buildTime: 15
   occupied: 0
+  npcTarget: {fileID: 0}
+  storedCoins: 0
   cost: 3
   makeTime: 5
   purchased: 0
   coinslot: {fileID: 0}
   coin: {fileID: 0}
   level: 0
+  isBase: 0
   fishingSpot: 1
-  rodShop: 0
+  garden: 0
 --- !u!23 &958641111
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1095,7 +1103,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 567172251}
-  m_RootOrder: 1
+  m_RootOrder: 4
 --- !u!23 &1056736212
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1157,16 +1165,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildCost: 5
   built: 0
-  buildTime: 15
   occupied: 0
+  npcTarget: {fileID: 0}
+  storedCoins: 0
   cost: 3
   makeTime: 5
   purchased: 0
   coinslot: {fileID: 0}
   coin: {fileID: 0}
   level: 0
+  isBase: 0
   fishingSpot: 1
-  rodShop: 0
+  garden: 0
 --- !u!54 &1056736216
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1231,6 +1241,7 @@ MonoBehaviour:
   busy: 0
   building: {fileID: 0}
   buildingScript: {fileID: 0}
+  coinsHeld: 0
 --- !u!195 &1161879222
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1547,7 +1558,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 567172251}
-  m_RootOrder: 6
+  m_RootOrder: 2
 --- !u!54 &1522793214
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1576,16 +1587,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildCost: 5
   built: 0
-  buildTime: 15
   occupied: 0
+  npcTarget: {fileID: 0}
+  storedCoins: 0
   cost: 3
   makeTime: 5
   purchased: 0
   coinslot: {fileID: 0}
   coin: {fileID: 0}
   level: 0
+  isBase: 0
   fishingSpot: 1
-  rodShop: 0
+  garden: 0
 --- !u!23 &1522793216
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1685,19 +1698,19 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 567172251}
     m_Modifications:
     - target: {fileID: 400000, guid: c5d94a540e644447b9e7c34418f534c9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -30.4
+      value: -32.798683
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c5d94a540e644447b9e7c34418f534c9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 28
+      value: 26.297531
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c5d94a540e644447b9e7c34418f534c9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 15
+      value: -1.3867188
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c5d94a540e644447b9e7c34418f534c9, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1705,7 +1718,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c5d94a540e644447b9e7c34418f534c9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c5d94a540e644447b9e7c34418f534c9, type: 3}
       propertyPath: m_LocalRotation.z
@@ -1717,7 +1730,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c5d94a540e644447b9e7c34418f534c9, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c5d94a540e644447b9e7c34418f534c9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c5d94a540e644447b9e7c34418f534c9, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: c5d94a540e644447b9e7c34418f534c9, type: 3}
@@ -1998,6 +2019,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa723e60836944a6bd5e94185f20efd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildings: []
+  buildingScripts: []
+  baseScript: {fileID: 0}
   npcs: []
   npcScripts: []
   waitingNPCTargets: []
@@ -2077,7 +2101,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 567172251}
-  m_RootOrder: 5
+  m_RootOrder: 7
 --- !u!54 &1793447018
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2106,16 +2130,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildCost: 5
   built: 0
-  buildTime: 15
   occupied: 0
+  npcTarget: {fileID: 0}
+  storedCoins: 0
   cost: 3
   makeTime: 5
   purchased: 0
   coinslot: {fileID: 0}
   coin: {fileID: 0}
   level: 0
+  isBase: 0
   fishingSpot: 1
-  rodShop: 0
+  garden: 0
 --- !u!23 &1793447020
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2196,7 +2222,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 567172251}
-  m_RootOrder: 2
+  m_RootOrder: 6
 --- !u!23 &1829058662
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2258,16 +2284,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildCost: 5
   built: 0
-  buildTime: 15
   occupied: 0
+  npcTarget: {fileID: 0}
+  storedCoins: 0
   cost: 3
   makeTime: 5
   purchased: 0
   coinslot: {fileID: 0}
   coin: {fileID: 0}
   level: 0
+  isBase: 0
   fishingSpot: 1
-  rodShop: 0
+  garden: 0
 --- !u!54 &1829058666
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2332,6 +2360,7 @@ MonoBehaviour:
   busy: 0
   building: {fileID: 0}
   buildingScript: {fileID: 0}
+  coinsHeld: 0
 --- !u!195 &1898804080
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2418,16 +2447,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildCost: 5
   built: 0
-  buildTime: 15
   occupied: 0
+  npcTarget: {fileID: 0}
+  storedCoins: 0
   cost: 5
   makeTime: 5
   purchased: 0
   coinslot: {fileID: 0}
   coin: {fileID: 0}
   level: 0
+  isBase: 1
   fishingSpot: 0
-  rodShop: 1
+  garden: 0
 --- !u!65 &1907537610
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2523,7 +2554,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011997383844, guid: 13077caf2b92a45329d811db2d1327d8, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011997383844, guid: 13077caf2b92a45329d811db2d1327d8, type: 2}
       propertyPath: m_LocalScale.y

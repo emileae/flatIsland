@@ -8,9 +8,12 @@ public class Building : MonoBehaviour {
 	// building basics
 	public int buildCost = 5;
 	public bool built = false;
-	public float buildTime = 15.0f;
+//	public float buildTime = 15.0f;
 	public bool occupied = false;// used to prevent more than one NPC building the building / crafting an item
-	private GameObject npcTarget = null;
+	public GameObject npcTarget = null;
+
+	// Base
+	public int storedCoins = 0;
 
 	// item basics
 	public int cost = 3;
@@ -25,14 +28,16 @@ public class Building : MonoBehaviour {
 
 	// Building types & Levels
 	public int level = 0;
-	public bool fishingSpot;
-	public bool rodShop;
+	public bool isBase = false;
+	public bool fishingSpot = false;
+	public bool garden = false;
 
 	// Specific scripts for each building type
-	public FishingSpot fishingSpotScript = null;
+//	public FishingSpot fishingSpotScript = null;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		if (!blackboard) {
 			blackboard = GameObject.Find ("Blackboard").GetComponent<Blackboard> ();
 		}
@@ -44,12 +49,13 @@ public class Building : MonoBehaviour {
 			}
 
 			// if no match was found
-			if (npcTarget == null){
+			if (npcTarget == null) {
 				npcTarget = gameObject;
 			}
 		}
-		if (fishingSpotScript == null) {
-			fishingSpotScript = GetComponent<FishingSpot> ();
+
+		if (isBase) {
+			
 		}
 	}
 	
@@ -151,29 +157,8 @@ public class Building : MonoBehaviour {
 
 	}
 
-	public void GetResult (NPC npcScript)
-	{
-
-		// List each building type and its reward.
-		// TODO
-		// might want to move this into separate scripts??
-		if (built) {
-			if (rodShop) {
-				Debug.Log ("made a rod");
-			} else if (fishingSpot) {
-				Debug.Log ("tell NPC to start fishing");
-			}
-		} else {
-			built = true;
-			if (rodShop) {
-				Debug.Log ("built rodShop");
-			} else if (fishingSpot) {
-				Debug.Log ("built fishingSpot");
-			}
-		}
-
-		occupied = false;
-
+	public void DepositCoin(){
+		storedCoins += 1;
 	}
 
 }
