@@ -121,60 +121,48 @@ public class NPC : MonoBehaviour {
 		}
 	}
 
+	// Type of work
+	// build a building (fishing spot, bridge, etc)
+	// work at a building to craft something (harpoon, ? gun)
+	// work at a building to earn coins (fishing, gardening)
+	// work at a building for an upgrade (upgrade tech - fishing, or progressively build a structure, like the lighthouse)
+
 	IEnumerator Work ()
 	{
 		float workTime = 0.0f;
-//		Debug.Log ("Start work");
 
 		BuildingParameters parameters = new BuildingParameters (buildingScript.level, buildingScript);
 
-
-//		Debug.Log ("workTime " + parameters.workTime);
-//		Debug.Log ("animation state " + parameters.animationState);
-
 		workTime = parameters.workTime;
 
-//		if (buildingScript.built) {
-//
-//			if (buildingScript.fishingSpot) {
-//				
-//			}else if (buildingScript.garden){
-//				
-//			}
-//
-//			isMaking = true;
-//			workTime = buildingScript.makeTime;
-//			Debug.Log ("Show making animation");
-//		} else {
-//			isBuilding = true;
-//			workTime = buildingScript.buildTime;
-//			Debug.Log ("Show building animation");
-//		}
-
 		yield return new WaitForSeconds (workTime);
+
+		// telling the building we're finished the work
+		buildingScript.occupied = false;
+		goToDestination = false;
+		busy = false;
 
 		// set building's built status to 'built'
 		if (!buildingScript.built) {
 			buildingScript.built = true;
 			buildingScript.hp = parameters.hp;
-		}
-
-		// telling the building we're finished the work
-		buildingScript.occupied = false;
-
-		goToDestination = false;
-
-		busy = false;
-
-		// collect earnings
-		coinsHeld += parameters.coinsEarned;
-
-		if (parameters.coinsEarned > 0) {
-//			Debug.Log ("Drop off coins at base.....");
-			target = blackboard.baseScript.npcTarget;
-			depositingCoins = true;
-			busy = true;
-			goToDestination = true;
+		} else {
+			if (buildingScript.craftItem) {
+				Debug.Log("Craft an item");
+			}else if (buildingScript.earnCoins){
+				Debug.Log("Earn coins");
+				// collect earnings
+				coinsHeld += parameters.coinsEarned;
+				if (parameters.coinsEarned > 0) {
+					target = blackboard.baseScript.npcTarget;
+					depositingCoins = true;
+					busy = true;
+					goToDestination = true;
+				}
+			}else if (buildingScript.upgrade){
+				Debug.Log("Upgrade");
+				buildingScript.Upgrade();
+			}
 		}
 
 	}

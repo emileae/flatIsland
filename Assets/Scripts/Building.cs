@@ -6,7 +6,8 @@ public class Building : MonoBehaviour {
 	private Blackboard blackboard = null;
 
 	// building basics
-	public int buildCost = 5;
+	private Building thisScript;
+//	public int buildCost = 5;
 	public bool built = false;
 //	public float buildTime = 15.0f;
 	public bool occupied = false;// used to prevent more than one NPC building the building / crafting an item
@@ -17,8 +18,8 @@ public class Building : MonoBehaviour {
 	public int storedCoins = 0;
 
 	// item basics
-	public int cost = 3;
-	public float makeTime = 5.0f;
+//	public int cost = 3;
+//	public float makeTime = 5.0f;
 
 	public bool purchased = false;
 	private int coinsPaid = 0;
@@ -27,8 +28,14 @@ public class Building : MonoBehaviour {
 	public GameObject coinslot;
 	public GameObject coin;
 
+	// building categories
+	public bool craftItem = false;
+	public bool earnCoins = false;
+	public bool upgrade = false;
+
 	// Building types & Levels
 	public int level = 0;
+	public int maxLevel = 1;
 	public bool isBase = false;
 	public bool fishingSpot = false;
 	public bool garden = false;
@@ -58,6 +65,8 @@ public class Building : MonoBehaviour {
 		if (isBase) {
 			
 		}
+
+		thisScript = gameObject.GetComponent<Building>();
 	}
 	
 	// Update is called once per frame
@@ -67,9 +76,10 @@ public class Building : MonoBehaviour {
 
 	public void GetPaid ()
 	{
+		BuildingParameters parameters = new BuildingParameters (level, thisScript);
 		coinsPaid += 1;
 		if (!built) {
-			if (coinsPaid >= buildCost) {
+			if (coinsPaid >= parameters.buildCost) {
 				paymentCompleted = true;
 				coinsPaid = 0;
 //				purchased = true;
@@ -77,7 +87,7 @@ public class Building : MonoBehaviour {
 				occupied = true;
 			}
 		} else {
-			if (coinsPaid >= cost) {
+			if (coinsPaid >= parameters.cost) {
 				paymentCompleted = true;
 				coinsPaid = 0;
 //				purchased = true;
@@ -175,6 +185,17 @@ public class Building : MonoBehaviour {
 
 	public void DepositCoin(){
 		storedCoins += 1;
+	}
+
+	public void Upgrade ()
+	{
+		if (level < maxLevel){
+			level += 1;
+			if (isBase) {
+				blackboard.UpgradeFishingSpots();
+				blackboard.UpgradeGardens();
+			}
+		}
 	}
 
 }

@@ -130,6 +130,23 @@ public class Blackboard : MonoBehaviour {
 //		}
 	}
 
+	// Upgrades
+	public void UpgradeFishingSpots ()
+	{
+		for (int i = 0; i < buildingScripts.Count; i++) {
+			if (buildingScripts [i].fishingSpot) {
+				buildingScripts[i].level += 1;
+			}
+		}
+	}
+	public void UpgradeGardens(){
+		for (int i = 0; i < buildingScripts.Count; i++) {
+			if (buildingScripts [i].garden) {
+				buildingScripts[i].level += 1;
+			}
+		}
+	}
+
 }
 
 
@@ -141,6 +158,8 @@ public class Blackboard : MonoBehaviour {
 // 5 = workshop work
 
 public class BuildingParameters {
+	public int buildCost = 0;
+	public int cost = 0;
 	public float workTime = 0.0f;
 	public int coinsEarned = 0;
 	public int animationState = 0;
@@ -148,59 +167,79 @@ public class BuildingParameters {
 
 	public BuildingParameters (int level, Building script)
 	{
+		// ensure that default takes the max level params.... shouldn't come to default, but in case...
 		if (script.built) {
 			if (script.fishingSpot) {
 				animationState = 2;
 				switch (level) {
 				case 0:
+					cost = 3;
 					workTime = 5.0f;
 					coinsEarned = 2;
 					hp = 2;
 					break;
 				case 1:
+					cost = 5;
 					workTime = 8.0f;
 					coinsEarned = 4;
 					hp = 3;
 					break;
 				default:
+					cost = 5;
+					workTime = 8.0f;
+					coinsEarned = 4;
+					hp = 3;
 					break;
 				}
 			} else if (script.garden) {
 				animationState = 3;
 				switch (level) {
 				case 0:
+					cost = 3;
 					workTime = 5.0f;
 					coinsEarned = 3;
 					hp = 3;
 					break;
 				case 1:
+					cost = 6;
 					workTime = 8.0f;
 					coinsEarned = 5;
 					hp = 6;
 					break;
 				default:
+					cost = 6;
+					workTime = 8.0f;
+					coinsEarned = 5;
+					hp = 6;
 					break;
 				}
 			} else if (script.isBase) {
 				animationState = 5;
 				switch (level) {
 				case 0:
+					cost = 5;
 					workTime = 5.0f;
 					break;
 				case 1:
+					cost = 8;
 					workTime = 8.0f;
 					break;
 				default:
+					cost = 8;
+					workTime = 8.0f;
 					break;
 				}
 			}
 		} else {
 			animationState = 1;
 			if (script.fishingSpot) {
+				buildCost = 5;
 				workTime = 5.0f;
 			} else if (script.garden) {
+				buildCost = 10;
 				workTime = 10.0f;
 			} else if (script.isBase) {
+				buildCost = 15;
 				workTime = 10.0f;
 			}
 		}
