@@ -363,18 +363,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e705746995294f20a5390384ed58d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildCost: 5
   built: 0
   occupied: 0
   npcTarget: {fileID: 0}
   hp: 0
   storedCoins: 0
-  cost: 3
-  makeTime: 5
   purchased: 0
   coinslot: {fileID: 0}
   coin: {fileID: 0}
+  craftItem: 0
+  earnCoins: 1
+  upgrade: 0
   level: 0
+  maxLevel: 1
   isBase: 0
   fishingSpot: 1
   garden: 0
@@ -985,18 +986,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e705746995294f20a5390384ed58d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildCost: 5
   built: 0
   occupied: 0
   npcTarget: {fileID: 0}
   hp: 0
   storedCoins: 0
-  cost: 3
-  makeTime: 5
   purchased: 0
   coinslot: {fileID: 0}
   coin: {fileID: 0}
+  craftItem: 0
+  earnCoins: 1
+  upgrade: 0
   level: 0
+  maxLevel: 1
   isBase: 0
   fishingSpot: 1
   garden: 0
@@ -1128,18 +1130,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e705746995294f20a5390384ed58d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildCost: 5
   built: 0
   occupied: 0
   npcTarget: {fileID: 0}
   hp: 0
   storedCoins: 0
-  cost: 3
-  makeTime: 5
   purchased: 0
   coinslot: {fileID: 0}
   coin: {fileID: 0}
+  craftItem: 0
+  earnCoins: 1
+  upgrade: 0
   level: 0
+  maxLevel: 1
   isBase: 0
   fishingSpot: 1
   garden: 0
@@ -1287,18 +1290,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e705746995294f20a5390384ed58d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildCost: 5
   built: 0
   occupied: 0
   npcTarget: {fileID: 0}
   hp: 0
   storedCoins: 0
-  cost: 3
-  makeTime: 5
   purchased: 0
   coinslot: {fileID: 0}
   coin: {fileID: 0}
+  craftItem: 0
+  earnCoins: 1
+  upgrade: 0
   level: 0
+  maxLevel: 1
   isBase: 0
   fishingSpot: 1
   garden: 0
@@ -1802,18 +1806,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e705746995294f20a5390384ed58d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildCost: 5
   built: 0
   occupied: 0
   npcTarget: {fileID: 0}
   hp: 0
   storedCoins: 0
-  cost: 3
-  makeTime: 5
   purchased: 0
   coinslot: {fileID: 0}
   coin: {fileID: 0}
+  craftItem: 0
+  earnCoins: 1
+  upgrade: 0
   level: 0
+  maxLevel: 1
   isBase: 0
   fishingSpot: 1
   garden: 0
@@ -2408,18 +2413,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e705746995294f20a5390384ed58d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildCost: 5
   built: 0
   occupied: 0
   npcTarget: {fileID: 0}
   hp: 0
   storedCoins: 0
-  cost: 3
-  makeTime: 5
   purchased: 0
   coinslot: {fileID: 0}
   coin: {fileID: 0}
+  craftItem: 0
+  earnCoins: 1
+  upgrade: 0
   level: 0
+  maxLevel: 1
   isBase: 0
   fishingSpot: 1
   garden: 0
@@ -2563,18 +2569,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e705746995294f20a5390384ed58d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildCost: 5
   built: 0
   occupied: 0
   npcTarget: {fileID: 0}
   hp: 0
   storedCoins: 0
-  cost: 3
-  makeTime: 5
   purchased: 0
   coinslot: {fileID: 0}
   coin: {fileID: 0}
+  craftItem: 0
+  earnCoins: 1
+  upgrade: 0
   level: 0
+  maxLevel: 1
   isBase: 0
   fishingSpot: 1
   garden: 0
@@ -2614,7 +2621,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1830252298
 Transform:
   m_ObjectHideFlags: 0
@@ -2905,18 +2912,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e705746995294f20a5390384ed58d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildCost: 5
   built: 0
   occupied: 0
   npcTarget: {fileID: 0}
   hp: 0
   storedCoins: 0
-  cost: 5
-  makeTime: 5
   purchased: 0
   coinslot: {fileID: 0}
   coin: {fileID: 0}
+  craftItem: 0
+  earnCoins: 0
+  upgrade: 1
   level: 0
+  maxLevel: 1
   isBase: 1
   fishingSpot: 0
   garden: 0
