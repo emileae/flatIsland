@@ -19,6 +19,9 @@ public class Player : MonoBehaviour {
 	public GameObject activeBuilding;
 	public Building buildingScript;
 
+	// animations
+	private Animator anim;
+
 
 	private CharacterController controller;
 	private NavMeshAgent agent;
@@ -36,6 +39,8 @@ public class Player : MonoBehaviour {
 		if (!blackboard) {
 			blackboard = GameObject.Find ("Blackboard").GetComponent<Blackboard> ();
 		}
+
+		anim = GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -45,6 +50,24 @@ public class Player : MonoBehaviour {
 		float inputH = Input.GetAxisRaw ("Horizontal");
 		direction = Vector3.right * inputH;
 		controller.Move (direction * speed + Vector3.up * gravity);
+
+		if (direction != Vector3.zero) {
+			anim.SetBool ("Walking", true);
+		} else {
+			anim.SetBool ("Walking", false);
+		}
+
+		// rotate
+		Vector3 targetAngles;
+		float smooth = 0.1f;
+		if (inputH > 0) {
+			targetAngles = transform.eulerAngles + 180f * Vector3.up; // what the new angles should be
+			transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, targetAngles, smooth * Time.deltaTime);
+		} else {
+			targetAngles = transform.eulerAngles - 180f * Vector3.up; // what the new angles should be
+			transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, targetAngles, smooth * Time.deltaTime);
+		}
+
 //		agent.Move(direction);
 
 		// action
