@@ -30,8 +30,8 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-//		controller = GetComponent<CharacterController>();
-		agent = GetComponent<NavMeshAgent>();
+		controller = GetComponent<CharacterController>();
+//		agent = GetComponent<NavMeshAgent>();
 
 		if (!blackboard) {
 			blackboard = GameObject.Find ("Blackboard").GetComponent<Blackboard> ();
@@ -44,8 +44,8 @@ public class Player : MonoBehaviour {
 		// moving
 		float inputH = Input.GetAxisRaw ("Horizontal");
 		direction = Vector3.right * inputH;
-//		controller.Move (direction * speed + Vector3.up * gravity);
-		agent.Move(direction);
+		controller.Move (direction * speed + Vector3.up * gravity);
+//		agent.Move(direction);
 
 		// action
 		float inputV = Input.GetAxisRaw ("Vertical");

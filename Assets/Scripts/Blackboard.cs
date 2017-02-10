@@ -116,10 +116,18 @@ public class Blackboard : MonoBehaviour {
 	}
 
 	public void CallNPCsToPlayer(GameObject player){
-		for (int i = 0; i < npcScripts.Count; i++) {
-			npcScripts[i].target = player;
-			npcScripts [i].goToDestination = true;
+		NavMeshHit hit;
+		if (NavMesh.SamplePosition(player.transform.position, out hit, 100.0f, NavMesh.AllAreas)) {
+//			result = hit.position;
+			for (int i = 0; i < npcScripts.Count; i++) {
+				npcScripts[i].playerDestination = hit.position;
+				npcScripts [i].goToPlayer = true;
+			}
 		}
+//		for (int i = 0; i < npcScripts.Count; i++) {
+//			npcScripts[i].target = player;
+//			npcScripts [i].goToDestination = true;
+//		}
 	}
 
 }

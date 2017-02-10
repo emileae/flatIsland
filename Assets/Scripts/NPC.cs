@@ -28,6 +28,10 @@ public class NPC : MonoBehaviour {
 	public GameObject enemy = null;
 	public Enemy enemyScript = null;
 
+	// Called to player
+	public Vector3 playerDestination;
+	public bool goToPlayer = false;
+
 	// Use this for initialization
 	void Start () {
 		agent = GetComponent<NavMeshAgent>();
@@ -41,11 +45,13 @@ public class NPC : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
+		// go to a normal destination/target
 		if (goToDestination && target != null) {
 			busy = true;
 			agent.SetDestination (target.transform.position);
 		}
 
+		// attack enemy
 		if (alert) {
 			if (!attacking) {
 				attacking = true;
@@ -53,14 +59,34 @@ public class NPC : MonoBehaviour {
 			}
 		}
 
-		// this is one option to call StartWork.... but might not always be able to get that close to the exact target... a large building with target as center for example
-//		if (target != null) {
-//			float sqrDistanceFromTarget = (transform.position - target.transform.position).sqrMagnitude;
-//			if (sqrDistanceFromTarget < 0.2) {
-//				Debug.Log ("Start work.....!>!>!>!>!>!>!>!>!");
-//			}
-//		}
+		// go to player
+		if (goToPlayer && playerDestination != null) {
+			target =null;
+			agent.SetDestination (playerDestination);
+			busy = false;
+			goToPlayer = false;
+		}
+
 	}
+
+	/// <summary>
+	///  might be useful to determin if navMesh agent has reached its destination
+	/// </summary>
+	/// <returns><c>true</c> if this instance has reached target; otherwise, <c>false</c>.</returns>
+//	void HasReachedTarget ()
+//	{
+//		if (!agent.pathPending)
+//		 {
+//			if (agent.remainingDistance <= agent.stoppingDistance)
+//		     {
+//				if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+//		         {
+//		             target = null;
+//		         }
+//		     }
+//		 }
+//	}
+
 
 	public void GoToTarget(GameObject destination){
 		if (target == destination) {
