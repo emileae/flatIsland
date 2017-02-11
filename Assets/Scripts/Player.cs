@@ -59,13 +59,17 @@ public class Player : MonoBehaviour {
 
 		// rotate
 		Vector3 targetAngles;
-		float smooth = 0.1f;
+		float smooth = 1.0f;
 		if (inputH > 0) {
-			targetAngles = transform.eulerAngles + 180f * Vector3.up; // what the new angles should be
-			transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, targetAngles, smooth * Time.deltaTime);
-		} else {
-			targetAngles = transform.eulerAngles - 180f * Vector3.up; // what the new angles should be
-			transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, targetAngles, smooth * Time.deltaTime);
+//			targetAngles = transform.eulerAngles + 180f * Vector3.up; // what the new angles should be
+//			transform.eulerAngles = Vector3.Lerp (transform.eulerAngles, targetAngles, smooth * Time.deltaTime);
+			Quaternion rotation = Quaternion.LookRotation(Vector3.right);
+			transform.rotation = rotation;
+		} else if (inputH < 0) {
+//			targetAngles = transform.eulerAngles - 180f * Vector3.up; // what the new angles should be
+//			transform.eulerAngles = Vector3.Lerp (transform.eulerAngles, targetAngles, smooth * Time.deltaTime);
+			Quaternion rotation = Quaternion.LookRotation(-Vector3.right);
+			transform.rotation = rotation;
 		}
 
 //		agent.Move(direction);
