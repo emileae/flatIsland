@@ -1,0 +1,307 @@
+fileFormatVersion: 2
+guid: 6e969d22e436b480a802feb212332969
+timeCreated: 1486925314
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Cube
+    100004: Hand_L
+    100006: Hand_R
+    100008: Head
+    100010: Hip
+    100012: LowerArm_L
+    100014: LowerArm_R
+    100016: LowerFinger1_L
+    100018: LowerFinger1_R
+    100020: LowerFinger2_L
+    100022: LowerFinger2_R
+    100024: LowerFinger3_L
+    100026: LowerFinger3_R
+    100028: LowerLeg_L
+    100030: LowerLeg_R
+    100032: //RootNode
+    100034: Neck
+    100036: Spine
+    100038: UpperArm_L
+    100040: UpperArm_R
+    100042: UpperFinger1_L
+    100044: UpperFinger1_R
+    100046: UpperFinger2_L
+    100048: UpperFinger2_R
+    100050: UpperFinger3_L
+    100052: UpperFinger3_R
+    100054: UpperLeg_L
+    100056: UpperLeg_R
+    400000: Armature
+    400002: Cube
+    400004: Hand_L
+    400006: Hand_R
+    400008: Head
+    400010: Hip
+    400012: LowerArm_L
+    400014: LowerArm_R
+    400016: LowerFinger1_L
+    400018: LowerFinger1_R
+    400020: LowerFinger2_L
+    400022: LowerFinger2_R
+    400024: LowerFinger3_L
+    400026: LowerFinger3_R
+    400028: LowerLeg_L
+    400030: LowerLeg_R
+    400032: //RootNode
+    400034: Neck
+    400036: Spine
+    400038: UpperArm_L
+    400040: UpperArm_R
+    400042: UpperFinger1_L
+    400044: UpperFinger1_R
+    400046: UpperFinger2_L
+    400048: UpperFinger2_R
+    400050: UpperFinger3_L
+    400052: UpperFinger3_R
+    400054: UpperLeg_L
+    400056: UpperLeg_R
+    4300000: Cube
+    7400000: Default Take
+    7400002: ArmatureAction
+    7400004: ArmatureAction0
+    9500000: //RootNode
+    13700000: Cube
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: ArmatureAction0
+      takeName: ArmatureAction
+      firstFrame: 0
+      lastFrame: 51
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/Spine
+        weight: 1
+      - path: Armature/Hip/Spine/Neck
+        weight: 1
+      - path: Armature/Hip/Spine/Neck/Head
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_L
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_L/LowerArm_L
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_L/LowerArm_L/Hand_L
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_L/LowerArm_L/Hand_L/UpperFinger1_L
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_L/LowerArm_L/Hand_L/UpperFinger1_L/LowerFinger1_L
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_L/LowerArm_L/Hand_L/UpperFinger2_L
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_L/LowerArm_L/Hand_L/UpperFinger2_L/LowerFinger2_L
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_L/LowerArm_L/Hand_L/UpperFinger3_L
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_L/LowerArm_L/Hand_L/UpperFinger3_L/LowerFinger3_L
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_R
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_R/LowerArm_R
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_R/LowerArm_R/Hand_R
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_R/LowerArm_R/Hand_R/UpperFinger1_R
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_R/LowerArm_R/Hand_R/UpperFinger1_R/LowerFinger1_R
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_R/LowerArm_R/Hand_R/UpperFinger2_R
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_R/LowerArm_R/Hand_R/UpperFinger2_R/LowerFinger2_R
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_R/LowerArm_R/Hand_R/UpperFinger3_R
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_R/LowerArm_R/Hand_R/UpperFinger3_R/LowerFinger3_R
+        weight: 1
+      - path: Armature/Hip/UpperLeg_L
+        weight: 1
+      - path: Armature/Hip/UpperLeg_L/LowerLeg_L
+        weight: 1
+      - path: Armature/Hip/UpperLeg_R
+        weight: 1
+      - path: Armature/Hip/UpperLeg_R/LowerLeg_R
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ArmatureAction
+      takeName: ArmatureAction
+      firstFrame: 0
+      lastFrame: 51
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/Spine
+        weight: 1
+      - path: Armature/Hip/Spine/Neck
+        weight: 1
+      - path: Armature/Hip/Spine/Neck/Head
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_L
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_L/LowerArm_L
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_L/LowerArm_L/Hand_L
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_L/LowerArm_L/Hand_L/UpperFinger1_L
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_L/LowerArm_L/Hand_L/UpperFinger1_L/LowerFinger1_L
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_L/LowerArm_L/Hand_L/UpperFinger2_L
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_L/LowerArm_L/Hand_L/UpperFinger2_L/LowerFinger2_L
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_L/LowerArm_L/Hand_L/UpperFinger3_L
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_L/LowerArm_L/Hand_L/UpperFinger3_L/LowerFinger3_L
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_R
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_R/LowerArm_R
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_R/LowerArm_R/Hand_R
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_R/LowerArm_R/Hand_R/UpperFinger1_R
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_R/LowerArm_R/Hand_R/UpperFinger1_R/LowerFinger1_R
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_R/LowerArm_R/Hand_R/UpperFinger2_R
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_R/LowerArm_R/Hand_R/UpperFinger2_R/LowerFinger2_R
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_R/LowerArm_R/Hand_R/UpperFinger3_R
+        weight: 1
+      - path: Armature/Hip/Spine/UpperArm_R/LowerArm_R/Hand_R/UpperFinger3_R/LowerFinger3_R
+        weight: 1
+      - path: Armature/Hip/UpperLeg_L
+        weight: 1
+      - path: Armature/Hip/UpperLeg_L/LowerLeg_L
+        weight: 1
+      - path: Armature/Hip/UpperLeg_R
+        weight: 1
+      - path: Armature/Hip/UpperLeg_R/LowerLeg_R
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
