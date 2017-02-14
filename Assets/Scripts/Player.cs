@@ -58,8 +58,8 @@ public class Player : MonoBehaviour {
 		}
 
 		// rotate
-		Vector3 targetAngles;
-		float smooth = 1.0f;
+//		Vector3 targetAngles;
+//		float smooth = 1.0f;
 		if (inputH > 0) {
 //			targetAngles = transform.eulerAngles + 180f * Vector3.up; // what the new angles should be
 //			transform.eulerAngles = Vector3.Lerp (transform.eulerAngles, targetAngles, smooth * Time.deltaTime);

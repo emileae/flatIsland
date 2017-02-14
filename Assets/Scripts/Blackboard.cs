@@ -26,28 +26,34 @@ public class Blackboard : MonoBehaviour {
 
 		// populate all NPCs
 		GameObject npcContainer = GameObject.Find ("NPCs");
-		foreach (Transform child in npcContainer.transform) {
-			npcs.Add (child);
-			npcScripts.Add (child.GetComponent<NPC> ());
+		if (npcContainer) {
+			foreach (Transform child in npcContainer.transform) {
+				npcs.Add (child);
+				npcScripts.Add (child.GetComponent<NPC> ());
+			}
 		}
 
 		// populate all buildings
 		GameObject buildingContainer = GameObject.Find ("Buildings");
-		foreach (Transform child in buildingContainer.transform) {
-			buildings.Add (child);
-			Building currentBuildingScript = child.GetComponent<Building> ();
-			buildingScripts.Add (currentBuildingScript);
-			if (currentBuildingScript.isBase) {
-				baseScript = child.gameObject.GetComponent<Building>();
+		if (buildingContainer) {
+			foreach (Transform child in buildingContainer.transform) {
+				buildings.Add (child);
+				Building currentBuildingScript = child.GetComponent<Building> ();
+				buildingScripts.Add (currentBuildingScript);
+				if (currentBuildingScript.isBase) {
+					baseScript = child.gameObject.GetComponent<Building> ();
+				}
 			}
 		}
 
 		// populate all initial enemies
 		GameObject enemyContainer = GameObject.Find ("Enemies");
-		foreach (Transform child in enemyContainer.transform) {
-			enemies.Add (child);
-			Enemy currentEnemyScript = child.GetComponent<Enemy> ();
-			enemyScripts.Add (currentEnemyScript);
+		if (enemyContainer) {
+			foreach (Transform child in enemyContainer.transform) {
+				enemies.Add (child);
+				Enemy currentEnemyScript = child.GetComponent<Enemy> ();
+				enemyScripts.Add (currentEnemyScript);
+			}
 		}
 
 	}

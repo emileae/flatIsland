@@ -112,8 +112,10 @@ public class Building : MonoBehaviour {
 		}
 		if (go.tag == "NPC") {
 			NPC npcScript = go.GetComponent<NPC> ();
+			Debug.Log("NPC arrived at a building target? " + (npcScript.target == npcTarget));
 			if (npcScript.target == npcTarget) {
 				Debug.Log ("Arrived at target destination ---- NPC");
+//				npcScript.StopMoving();
 				npcScript.building = gameObject;
 				npcScript.buildingScript = gameObject.GetComponent<Building> ();
 				npcScript.StartWork ();
@@ -157,6 +159,8 @@ public class Building : MonoBehaviour {
 
 		if (go.tag == "NPC") {
 			NPC npcScript = go.GetComponent<NPC> ();
+			npcScript.building = null;
+			npcScript.buildingScript = null;
 			if (npcScript.target == npcTarget) {
 				occupied = false;// if NPC leaves building its then available for another NPC
 				// TODO
@@ -165,18 +169,13 @@ public class Building : MonoBehaviour {
 				// consider clearing work if NPC moves out of station
 				// if NPC is not busy then exiting clears the buildscript
 				// otherwise NPC is still busy and may have been pushed out of work area
-				if (!npcScript.busy) {
-					npcScript.building = null;
-					npcScript.buildingScript = null;
-				} else {
+				if (npcScript.busy) {
 					Debug.Log ("StopWork Coroutine");
 					npcScript.StopWork ();
 					// NPC no longer pursues the task if pushed out of work area...
 					npcScript.goToDestination = false;
 					npcScript.target = null;
 					npcScript.busy = false;
-					npcScript.building = null;
-					npcScript.buildingScript = null;
 				}
 			}
 		}
@@ -195,7 +194,18 @@ public class Building : MonoBehaviour {
 				blackboard.UpgradeFishingSpots();
 				blackboard.UpgradeGardens();
 			}
+			ChangeMesh(level);
 		}
+	}
+
+	public void ChangeMesh (int level)
+	{
+		if (level == 0) {
+			GameObject unBuiltGeometry = transform.Find("UnBuilt").gameObject;
+			unBuiltGeometry.SetActive(false);
+		}
+		GameObject visibleGeometry = transform.Find("Built" + level).gameObject;
+		visibleGeometry.SetActive(true);
 	}
 
 }

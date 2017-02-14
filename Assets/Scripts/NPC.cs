@@ -88,7 +88,11 @@ public class NPC : MonoBehaviour {
 //	}
 
 
-	public void GoToTarget(GameObject destination){
+	public void GoToTarget (GameObject destination)
+	{
+//		if (agent.hasPath) {
+//			agent.ResetPath();/// in case navmesh agent has been stopped	
+//		}
 		if (target == destination) {
 //			Debug.Log ("Already there....");
 			goToDestination = true;
@@ -98,6 +102,10 @@ public class NPC : MonoBehaviour {
 			goToDestination = true;
 		}
 
+	}
+
+	public void StopMoving(){
+		agent.Stop();
 	}
 
 	public void StartWork ()
@@ -146,6 +154,7 @@ public class NPC : MonoBehaviour {
 		if (!buildingScript.built) {
 			buildingScript.built = true;
 			buildingScript.hp = parameters.hp;
+			buildingScript.ChangeMesh(0);
 		} else {
 			if (buildingScript.craftItem) {
 				Debug.Log("Craft an item");
@@ -154,6 +163,7 @@ public class NPC : MonoBehaviour {
 				// collect earnings
 				coinsHeld += parameters.coinsEarned;
 				if (parameters.coinsEarned > 0) {
+					Debug.Log("Go to put fish back on the rack...");
 					target = blackboard.baseScript.npcTarget;
 					depositingCoins = true;
 					busy = true;
@@ -170,12 +180,14 @@ public class NPC : MonoBehaviour {
 	public void DepositCoins ()
 	{
 		if (coinsHeld > 0) {
+//			Debug.Log("DropOffCoins");
 			StartCoroutine (DropOffCoins ());
 		}
 	}
 
 	IEnumerator DropOffCoins ()
 	{
+//		Debug.Log("DropOffCoins...");
 		// multiply coinsHeld by the deposit time per coin....
 		float coinDropoffTime = 2.0f;
 		yield return new WaitForSeconds (coinDropoffTime);
