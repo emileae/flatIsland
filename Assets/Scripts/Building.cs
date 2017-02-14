@@ -109,6 +109,10 @@ public class Building : MonoBehaviour {
 			}
 			playerScript.activeBuilding = gameObject;
 			playerScript.buildingScript = gameObject.GetComponent<Building> ();
+
+			if (!playerScript.buildingScript.occupied) {
+				blackboard.ShowCost(playerScript.buildingScript);
+			}
 		}
 		if (go.tag == "NPC") {
 			NPC npcScript = go.GetComponent<NPC> ();

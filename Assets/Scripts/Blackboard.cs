@@ -20,6 +20,9 @@ public class Blackboard : MonoBehaviour {
 	public List<Transform> enemies = new List<Transform> ();
 	public List<Enemy> enemyScripts = new List<Enemy> ();
 
+	// Included Prefabs
+	public GameObject ghostFish;
+
 	// Use this for initialization
 	void Awake ()
 	{
@@ -134,6 +137,28 @@ public class Blackboard : MonoBehaviour {
 //			npcScripts[i].target = player;
 //			npcScripts [i].goToDestination = true;
 //		}
+	}
+
+	// Showing the cost
+	public void ShowCost (Building bs)
+	{
+		BuildingParameters parameters = new BuildingParameters (bs.level, bs);
+		if (bs.built) {
+			Debug.Log("Cost: " + parameters.cost);
+		} else {
+			Debug.Log("Build Cost: " + parameters.buildCost);
+		}
+
+		Instantiate(ghostFish, new Vector3(2.0f, 0, 0), Quaternion.identity);
+	}
+	public void HideCost (Building bs)
+	{
+		BuildingParameters parameters = new BuildingParameters (bs.level, bs);
+		if (bs.built) {
+			Debug.Log("Cost: " + parameters.cost);
+		} else {
+			Debug.Log("Build Cost: " + parameters.buildCost);
+		}
 	}
 
 	// Upgrades
