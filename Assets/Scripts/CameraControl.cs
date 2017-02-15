@@ -45,7 +45,7 @@ public class CameraControl : MonoBehaviour {
 		// Find the average position of the targets.
 //        FindAveragePosition ();
 
-		m_DesiredPosition = new Vector3(player.position.x, 40, -409);
+		m_DesiredPosition = new Vector3(player.position.x, 20, -509);
 
 		// Smoothly transition to that position.
 		transform.position = Vector3.SmoothDamp (transform.position, m_DesiredPosition, ref m_MoveVelocity, m_DampTime);

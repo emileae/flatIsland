@@ -50,7 +50,7 @@ public class Player : MonoBehaviour {
 		float inputH = Input.GetAxisRaw ("Horizontal");
 		float inputV = Input.GetAxisRaw ("Vertical");
 
-		direction = Vector3.right * inputH + Vector3.forward * inputV;
+		direction = Vector3.right * inputH;// + Vector3.forward * inputV;
 		controller.Move (direction * speed + Vector3.up * gravity);
 
 		if (direction != Vector3.zero) {
@@ -82,24 +82,24 @@ public class Player : MonoBehaviour {
 		// call men
 		bool whistle = Input.GetButton("Fire3");
 
-//		if (inputV < 0 && canPay && carryingCoins > 0) {
-//			if (!isPaying) {
-//				if (!buildingScript.occupied) {
-//					isPaying = true;
-//					StartCoroutine (Pay ());
-//				}
-//			}
-//		}
-//		if (inputV > 0 && canCollect) {
-//			if (!isCollecting) {
-//				isCollecting = true;
-//				if (buildingScript.storedCoins > 0) {
-//					StartCoroutine (Collect ());
-//				} else {
-//					isCollecting = false;
-//				}
-//			}
-//		}
+		if (inputV < 0 && canPay && carryingCoins > 0) {
+			if (!isPaying) {
+				if (!buildingScript.occupied) {
+					isPaying = true;
+					StartCoroutine (Pay ());
+				}
+			}
+		}
+		if (inputV > 0 && canCollect) {
+			if (!isCollecting) {
+				isCollecting = true;
+				if (buildingScript.storedCoins > 0) {
+					StartCoroutine (Collect ());
+				} else {
+					isCollecting = false;
+				}
+			}
+		}
 
 		if (whistle && !whistling) {
 			whistling = true;
