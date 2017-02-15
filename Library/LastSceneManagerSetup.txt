@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/DividedIsland.unity
+- path: Assets/Scenes/TinyIslands.unity
   isLoaded: 1
   isActive: 1
