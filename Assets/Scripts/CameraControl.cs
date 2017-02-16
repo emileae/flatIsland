@@ -18,6 +18,7 @@ public class CameraControl : MonoBehaviour {
     /*[HideInInspector]*/ public Transform[] m_Targets; // All the targets the camera needs to encompass.
 
 
+    public float zPos = -300;
     private Camera m_Camera;                        // Used for referencing the camera.
     private float m_ZoomSpeed;                      // Reference speed for the smooth damping of the orthographic size.
     private Vector3 m_MoveVelocity;                 // Reference velocity for the smooth damping of the position.
@@ -45,7 +46,7 @@ public class CameraControl : MonoBehaviour {
 		// Find the average position of the targets.
 //        FindAveragePosition ();
 
-		m_DesiredPosition = new Vector3(player.position.x, 20, -509);
+		m_DesiredPosition = new Vector3(player.position.x, 20, zPos);
 
 		// Smoothly transition to that position.
 		transform.position = Vector3.SmoothDamp (transform.position, m_DesiredPosition, ref m_MoveVelocity, m_DampTime);
