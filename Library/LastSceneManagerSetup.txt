@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/TinyIslands.unity
+- path: Assets/Scenes/Alto.unity
   isLoaded: 1
   isActive: 1
